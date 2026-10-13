@@ -1,0 +1,13 @@
+{
+  "domain": "ha352",
+  "name": "352 Smart Home",
+  "codeowners": ["@q295273425"],
+  "config_flow": true,
+  "documentation": "https://github.com/q295273425/ha352",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/q295273425/ha352/issues",
+  "requirements": [],
+  "single_config_entry": false,
+  "version": "0.1.0"
+}

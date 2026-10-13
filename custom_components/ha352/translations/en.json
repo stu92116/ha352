@@ -1,0 +1,31 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "352 Smart Home",
+        "description": "Enter the account (phone number) and password of the 352Life app. Devices are discovered automatically.",
+        "data": {
+          "account": "Phone number",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate 352",
+        "description": "The 352 session has expired. Please enter your account and password again.",
+        "data": {
+          "account": "Phone number",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid account or password",
+      "cannot_connect": "Cannot connect to the 352 cloud",
+      "unknown": "Unknown error, check the logs"
+    },
+    "abort": {
+      "already_configured": "This account is already configured",
+      "reauth_successful": "Re-authentication successful"
+    }
+  }
+}
