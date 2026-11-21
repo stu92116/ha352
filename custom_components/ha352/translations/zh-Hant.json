@@ -1,0 +1,251 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "352 智慧家電",
+        "description": "輸入 352Life App 的手機號碼與密碼。台灣手機請在電話區號欄填 +886，手機號碼照 App 的填法。",
+        "data": {
+          "account": "手機號碼",
+          "area": "電話區號（選填）",
+          "password": "密碼"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新登入 352",
+        "description": "352 登入已逾期。請確認手機號碼、電話區號與密碼。",
+        "data": {
+          "account": "手機號碼",
+          "area": "電話區號（選填）",
+          "password": "密碼"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "352Life 拒絕登入。請確認手機號碼、電話區號與密碼。詳情請查看記錄。",
+      "cloud_auth": "352Life 已登入，但無法建立阿里雲連線。詳情請查看記錄。",
+      "cannot_connect": "無法連線到 352 雲端。請檢查網路。",
+      "unknown": "發生未知錯誤。請查看記錄。"
+    },
+    "abort": {
+      "already_configured": "這個帳號已設定。",
+      "reauth_successful": "已重新登入。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "hcho": {
+        "name": "甲醛"
+      },
+      "tvoc": {
+        "name": "TVOC"
+      },
+      "currenttemperature": {
+        "name": "溫度"
+      },
+      "relativehumidity": {
+        "name": "濕度"
+      },
+      "airqualitygrade": {
+        "name": "空氣品質等級"
+      },
+      "workmode": {
+        "name": "運轉模式"
+      },
+      "windvalue": {
+        "name": "風量"
+      },
+      "devicemode": {
+        "name": "裝置模式"
+      },
+      "totalpurairv": {
+        "name": "累計淨化空氣量"
+      },
+      "totalruntime": {
+        "name": "累計運轉時間"
+      },
+      "sleepmodesetparam": {
+        "name": "睡眠模式參數"
+      },
+      "wifi_rssi": {
+        "name": "Wi-Fi 訊號"
+      },
+      "filterlifetimepercent_1": {
+        "name": "濾芯 1 剩餘壽命"
+      },
+      "filterlifetimepercent_2": {
+        "name": "濾芯 2 剩餘壽命"
+      },
+      "filterlifetimepercent_3": {
+        "name": "濾芯 3 剩餘壽命"
+      },
+      "filtersn_1": {
+        "name": "濾芯 1 序號"
+      },
+      "filtersn_2": {
+        "name": "濾芯 2 序號"
+      },
+      "filtersn_3": {
+        "name": "濾芯 3 序號"
+      },
+      "rawwatertds": {
+        "name": "進水 TDS"
+      },
+      "finishedwatertds": {
+        "name": "出水 TDS"
+      },
+      "rawwaterstatus": {
+        "name": "進水水質等級"
+      },
+      "purewasteratio": {
+        "name": "純廢比"
+      },
+      "hotpottemp": {
+        "name": "熱水溫度"
+      },
+      "taptemperature": {
+        "name": "出水溫度"
+      },
+      "tapfinishedwatertemp": {
+        "name": "純水出水溫度"
+      },
+      "normaltemperature": {
+        "name": "常溫水溫度"
+      },
+      "rawwatertemperature": {
+        "name": "進水溫度"
+      },
+      "watertemperature": {
+        "name": "水溫"
+      },
+      "coolpottemperature": {
+        "name": "冷水溫度"
+      },
+      "boilingtemperature": {
+        "name": "沸點"
+      },
+      "refluxntctemp": {
+        "name": "回流溫度"
+      },
+      "disinfectionntctemp": {
+        "name": "消毒溫度"
+      },
+      "settemperature": {
+        "name": "設定溫度"
+      },
+      "totalwaterconsumption": {
+        "name": "累計淨水量"
+      },
+      "totalpurewater": {
+        "name": "累計製水量"
+      },
+      "totalwastewater": {
+        "name": "累計廢水量"
+      },
+      "normothermiawater": {
+        "name": "累計常溫水量"
+      },
+      "hydrothermalwater": {
+        "name": "累計熱水量"
+      },
+      "surpluswater_1": {
+        "name": "濾芯 1 剩餘淨水量"
+      },
+      "surpluswater_2": {
+        "name": "濾芯 2 剩餘淨水量"
+      },
+      "currentpurewaterproduction": {
+        "name": "目前製水量"
+      },
+      "onewater": {
+        "name": "本次出水量"
+      },
+      "onepurewater": {
+        "name": "本次製水量"
+      },
+      "onewatertime": {
+        "name": "本次出水時間"
+      },
+      "liquidlevelstatus": {
+        "name": "水箱水位"
+      },
+      "workstate": {
+        "name": "運轉狀態"
+      },
+      "hotpotstate": {
+        "name": "熱水槽狀態"
+      },
+      "heatingstatus": {
+        "name": "加熱狀態"
+      },
+      "totalwaterusageduration": {
+        "name": "累計用水時間"
+      },
+      "deviceusedtime": {
+        "name": "裝置使用時間"
+      },
+      "cycledisinfecttime": {
+        "name": "循環消毒次數"
+      },
+      "errorcode": {
+        "name": "故障代碼"
+      }
+    },
+    "switch": {
+      "uvledswitch": {
+        "name": "UV 殺菌燈"
+      },
+      "pciswitch": {
+        "name": "負離子"
+      },
+      "smartmodeswitch": {
+        "name": "智慧模式"
+      },
+      "childlockswitch": {
+        "name": "童鎖"
+      },
+      "voicesettings": {
+        "name": "語音提示"
+      },
+      "standbysensorswitch": {
+        "name": "待機感應"
+      },
+      "microwavesensor": {
+        "name": "微波感應"
+      },
+      "sleepmode": {
+        "name": "睡眠模式"
+      },
+      "hotpotswitch": {
+        "name": "熱水槽開關"
+      },
+      "coolpotswitch": {
+        "name": "冷水槽開關"
+      },
+      "uvc": {
+        "name": "UV 殺菌"
+      },
+      "directeffluentswitch": {
+        "name": "直排開關"
+      },
+      "holidaymode": {
+        "name": "假日模式"
+      }
+    },
+    "fan": {
+      "fan_speed": {
+        "name": "風速"
+      }
+    },
+    "light": {
+      "display_light": {
+        "name": "螢幕燈"
+      }
+    }
+  }
+}

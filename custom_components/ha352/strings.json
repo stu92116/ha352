@@ -30,5 +30,222 @@
       "already_configured": "该账号已添加过",
       "reauth_successful": "重新认证成功"
     }
+  },
+  "entity": {
+    "sensor": {
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "hcho": {
+        "name": "甲醛"
+      },
+      "tvoc": {
+        "name": "TVOC"
+      },
+      "currenttemperature": {
+        "name": "温度"
+      },
+      "relativehumidity": {
+        "name": "湿度"
+      },
+      "airqualitygrade": {
+        "name": "空气质量等级"
+      },
+      "workmode": {
+        "name": "工作模式"
+      },
+      "windvalue": {
+        "name": "风量值"
+      },
+      "devicemode": {
+        "name": "设备模式"
+      },
+      "totalpurairv": {
+        "name": "累计净化空气量"
+      },
+      "totalruntime": {
+        "name": "累计运行时长"
+      },
+      "sleepmodesetparam": {
+        "name": "睡眠模式参数"
+      },
+      "wifi_rssi": {
+        "name": "WiFi 信号"
+      },
+      "filterlifetimepercent_1": {
+        "name": "滤芯1剩余"
+      },
+      "filterlifetimepercent_2": {
+        "name": "滤芯2剩余"
+      },
+      "filterlifetimepercent_3": {
+        "name": "滤芯3剩余"
+      },
+      "filtersn_1": {
+        "name": "滤芯1序列号"
+      },
+      "filtersn_2": {
+        "name": "滤芯2序列号"
+      },
+      "filtersn_3": {
+        "name": "滤芯3序列号"
+      },
+      "rawwatertds": {
+        "name": "原水 TDS"
+      },
+      "finishedwatertds": {
+        "name": "纯水 TDS"
+      },
+      "rawwaterstatus": {
+        "name": "原水水质等级"
+      },
+      "purewasteratio": {
+        "name": "纯废比"
+      },
+      "hotpottemp": {
+        "name": "热水温度"
+      },
+      "taptemperature": {
+        "name": "出水温度"
+      },
+      "tapfinishedwatertemp": {
+        "name": "纯水出水温度"
+      },
+      "normaltemperature": {
+        "name": "常温水温度"
+      },
+      "rawwatertemperature": {
+        "name": "进水温度"
+      },
+      "watertemperature": {
+        "name": "水温"
+      },
+      "coolpottemperature": {
+        "name": "冷水温度"
+      },
+      "boilingtemperature": {
+        "name": "沸点"
+      },
+      "refluxntctemp": {
+        "name": "回流温度"
+      },
+      "disinfectionntctemp": {
+        "name": "消毒温度"
+      },
+      "settemperature": {
+        "name": "设定温度"
+      },
+      "totalwaterconsumption": {
+        "name": "累计净水量"
+      },
+      "totalpurewater": {
+        "name": "累计制水量"
+      },
+      "totalwastewater": {
+        "name": "累计废水量"
+      },
+      "normothermiawater": {
+        "name": "累计常温水"
+      },
+      "hydrothermalwater": {
+        "name": "累计热水"
+      },
+      "surpluswater_1": {
+        "name": "滤芯1剩余净水量"
+      },
+      "surpluswater_2": {
+        "name": "滤芯2剩余净水量"
+      },
+      "currentpurewaterproduction": {
+        "name": "当前制水量"
+      },
+      "onewater": {
+        "name": "本次出水量"
+      },
+      "onepurewater": {
+        "name": "本次制水量"
+      },
+      "onewatertime": {
+        "name": "本次出水用时"
+      },
+      "liquidlevelstatus": {
+        "name": "水箱水位"
+      },
+      "workstate": {
+        "name": "工作状态"
+      },
+      "hotpotstate": {
+        "name": "热罐状态"
+      },
+      "heatingstatus": {
+        "name": "加热状态"
+      },
+      "totalwaterusageduration": {
+        "name": "累计使用时长"
+      },
+      "deviceusedtime": {
+        "name": "设备使用时长"
+      },
+      "cycledisinfecttime": {
+        "name": "循环消毒计数"
+      },
+      "errorcode": {
+        "name": "错误代码"
+      }
+    },
+    "switch": {
+      "uvledswitch": {
+        "name": "UV 杀菌灯"
+      },
+      "pciswitch": {
+        "name": "负离子"
+      },
+      "smartmodeswitch": {
+        "name": "智能模式"
+      },
+      "childlockswitch": {
+        "name": "童锁"
+      },
+      "voicesettings": {
+        "name": "语音提示"
+      },
+      "standbysensorswitch": {
+        "name": "待机感应"
+      },
+      "microwavesensor": {
+        "name": "微波感应"
+      },
+      "sleepmode": {
+        "name": "睡眠模式"
+      },
+      "hotpotswitch": {
+        "name": "热罐开关"
+      },
+      "coolpotswitch": {
+        "name": "冷罐开关"
+      },
+      "uvc": {
+        "name": "UV 杀菌"
+      },
+      "directeffluentswitch": {
+        "name": "直排开关"
+      },
+      "holidaymode": {
+        "name": "假日模式"
+      }
+    },
+    "fan": {
+      "fan_speed": {
+        "name": "风速"
+      }
+    },
+    "light": {
+      "display_light": {
+        "name": "屏幕灯"
+      }
+    }
   }
 }

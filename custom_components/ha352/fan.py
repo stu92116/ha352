@@ -30,7 +30,7 @@ class Ha352Fan(Ha352Entity, FanEntity):
     def __init__(self, coordinator: Ha352Coordinator, iot_id: str) -> None:
         super().__init__(coordinator, iot_id)
         self._attr_unique_id = f"{iot_id}_fan"
-        self._attr_name = "风速"
+        self._attr_translation_key = "fan_speed"
 
     @property
     def is_on(self) -> bool | None:

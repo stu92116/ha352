@@ -23,7 +23,7 @@ class Ha352Light(Ha352Entity, LightEntity):
 
     _attr_supported_color_modes = {ColorMode.ONOFF}
     _attr_color_mode = ColorMode.ONOFF
-    _attr_name = "屏幕灯"
+    _attr_translation_key = "display_light"
 
     def __init__(self, coordinator: Ha352Coordinator, iot_id: str) -> None:
         super().__init__(coordinator, iot_id)
