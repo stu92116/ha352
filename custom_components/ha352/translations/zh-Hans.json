@@ -19,7 +19,8 @@
       }
     },
     "error": {
-      "invalid_auth": "账号或密码错误",
+      "invalid_auth": "352Life 拒绝登录。请核对手机号、区号和密码。详情请查看日志。",
+      "cloud_auth": "352Life 登录成功，但无法建立阿里云会话。详情请查看日志。",
       "cannot_connect": "无法连接 352 云端，请检查网络",
       "unknown": "未知错误，请查看日志"
     },

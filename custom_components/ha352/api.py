@@ -49,6 +49,14 @@ class Ha352AuthError(Ha352Error):
     """账号/密码错误或登录态失效。"""
 
 
+class Ha352LoginRejected(Ha352AuthError):
+    """352 账号登录被拒绝，重新发送相同凭据不会恢复会话。"""
+
+
+class Ha352CloudAuthError(Ha352AuthError):
+    """352 登录后未能建立阿里云会话。"""
+
+
 class Ha352ConnectionError(Ha352Error):
     """网络不可达 / 网关拒绝。"""
 
@@ -185,10 +193,13 @@ class Ha352Client:
         try:
             resp = r.json()
         except ValueError as err:
-            raise Ha352ConnectionError(f"352 login non-json: {r.text[:200]}") from err
+            raise Ha352ConnectionError(f"352 login non-JSON (HTTP {r.status_code})") from err
+        if not isinstance(resp, dict):
+            raise Ha352ConnectionError(f"352 login invalid response (HTTP {r.status_code})")
         if r.status_code != 200 or resp.get("code") != 0:
-            msg = str(resp.get("msg") or resp.get("message") or r.text[:120])
-            raise Ha352AuthError(f"352 login failed code={resp.get('code')}: {msg}")
+            code = resp.get("code")
+            code = code if type(code) is int else "unknown"
+            raise Ha352LoginRejected(f"352 login rejected (HTTP {r.status_code}, code {code})")
         data = resp.get("data") or {}
         self._access_token = data.get("access_token")
         self._refresh_token_352 = data.get("refresh_token")
@@ -224,7 +235,7 @@ class Ha352Client:
             "application/json; charset=UTF-8")
         sid = _find_key(resp, "sid") or _find_key(resp, "sessionId")
         if not sid:
-            raise Ha352AuthError(f"OA loginbyoauth no sid: {json.dumps(resp)[:200]}")
+            raise Ha352CloudAuthError("Alibaba OpenAccount login returned no session ID")
         self._oa_sid = sid
         return str(sid)
 
@@ -274,7 +285,7 @@ class Ha352Client:
                     api_ver=APIVER_CREATE_SESSION, with_token=False)
                 iot_token = resp.get("data", {}).get("iotToken") or _find_key(resp, "iotToken")
                 if not iot_token:
-                    raise Ha352AuthError(f"createSession no iotToken: {json.dumps(resp)[:200]}")
+                    raise Ha352CloudAuthError("Alibaba IoT session returned no token")
                 self._iot_token = iot_token
                 self._identity_id = resp.get("data", {}).get("identityId") \
                     or _find_key(resp, "identityId")
@@ -291,6 +302,8 @@ class Ha352Client:
     def _with_retry(self, fn: Callable[[], Any]) -> Any:
         try:
             return fn()
+        except Ha352LoginRejected:
+            raise
         except Ha352Error:
             # 登录态失效概率最大：整链重建后重试一次
             self._iot_token = None

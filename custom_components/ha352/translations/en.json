@@ -19,7 +19,8 @@
       }
     },
     "error": {
-      "invalid_auth": "Invalid account or password",
+      "invalid_auth": "352Life rejected the login. Check the phone number, calling code, and password. See the logs for details.",
+      "cloud_auth": "352Life accepted the login, but the Alibaba Cloud session could not be established. See the logs for details.",
       "cannot_connect": "Cannot connect to the 352 cloud",
       "unknown": "Unknown error, check the logs"
     },
