@@ -3,9 +3,10 @@
     "step": {
       "user": {
         "title": "352 Smart Home",
-        "description": "Enter the account (phone number) and password of the 352Life app. Devices are discovered automatically.",
+        "description": "Enter the phone number and password you use in 352Life. For Taiwan, enter +886 in the calling code field and enter the phone number as you do in the app.",
         "data": {
           "account": "Phone number",
+          "area": "Calling code (optional)",
           "password": "Password"
         }
       },
@@ -14,6 +15,7 @@
         "description": "The 352 session has expired. Please enter your account and password again.",
         "data": {
           "account": "Phone number",
+          "area": "Calling code (optional)",
           "password": "Password"
         }
       }

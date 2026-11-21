@@ -3,9 +3,10 @@
     "step": {
       "user": {
         "title": "352 智能家电",
-        "description": "输入 352Life App 的登录账号（手机号）与密码。设备会自动发现并添加。",
+        "description": "输入 352Life App 的手机号与密码。如使用台湾手机号，请在区号栏填 +886，手机号与 App 中填写的一致。",
         "data": {
           "account": "手机号",
+          "area": "电话区号（可选）",
           "password": "密码"
         }
       },
@@ -14,6 +15,7 @@
         "description": "352 登录态已失效，请重新输入账号密码。",
         "data": {
           "account": "手机号",
+          "area": "电话区号（可选）",
           "password": "密码"
         }
       }

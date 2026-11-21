@@ -107,10 +107,13 @@ def _extract_props(resp: dict) -> dict[str, Any]:
 class Ha352Client:
     """352 账号 -> 阿里 IoT 会话的全托管客户端（同步阻塞，配 executor 使用）。"""
 
-    def __init__(self, account: str, password: str, timeout: int = 20) -> None:
+    def __init__(
+        self, account: str, password: str, timeout: int = 20, *, area: str = ""
+    ) -> None:
         self.account = str(account)
         self.password = str(password)
         self.timeout = timeout
+        self._area = area.strip().removeprefix("+")
         self._http = requests.Session()
         self._http.trust_env = False  # 直连，绕开容器/系统代理变量
         self._access_token: str | None = None
@@ -183,10 +186,13 @@ class Ha352Client:
 
     def _login_352(self) -> None:
         path = "/api/v1/enduser/login"
+        credentials = {"account": self.account, "password": self.password}
+        if self._area:
+            credentials["area"] = self._area
         try:
             r = self._http.post(
                 f"https://{MX_HOST}{path}",
-                json={"account": self.account, "password": self.password},
+                json=credentials,
                 headers=self._mx_headers(path), timeout=self.timeout)
         except requests.RequestException as err:
             raise Ha352ConnectionError(f"352 login unreachable: {err}") from err

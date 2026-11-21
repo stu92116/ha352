@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
 from .api import Ha352Client
-from .const import CONF_ACCOUNT, CONF_PASSWORD, DOMAIN
+from .const import CONF_ACCOUNT, CONF_AREA, CONF_PASSWORD, DOMAIN
 from .coordinator import Ha352Coordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -18,7 +18,8 @@ PLATFORMS = ["sensor", "fan", "switch", "light"]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     client = Ha352Client(
-        entry.data[CONF_ACCOUNT], entry.data[CONF_PASSWORD])
+        entry.data[CONF_ACCOUNT], entry.data[CONF_PASSWORD],
+        area=entry.data.get(CONF_AREA, ""))
     coordinator = Ha352Coordinator(hass, client, entry.title)
     await coordinator.async_config_entry_first_refresh()
 
