@@ -3,9 +3,10 @@
     "step": {
       "user": {
         "title": "352 Smart Home",
-        "description": "Enter the account (phone number) and password of the 352Life app. Devices are discovered automatically.",
+        "description": "Enter the phone number and password you use in 352Life. For Taiwan, enter +886 in the calling code field and enter the phone number as you do in the app.",
         "data": {
           "account": "Phone number",
+          "area": "Calling code (optional)",
           "password": "Password"
         }
       },
@@ -14,18 +15,237 @@
         "description": "The 352 session has expired. Please enter your account and password again.",
         "data": {
           "account": "Phone number",
+          "area": "Calling code (optional)",
           "password": "Password"
         }
       }
     },
     "error": {
-      "invalid_auth": "Invalid account or password",
+      "invalid_auth": "352Life rejected the login. Check the phone number, calling code, and password. See the logs for details.",
+      "cloud_auth": "352Life accepted the login, but the Alibaba Cloud session could not be established. See the logs for details.",
       "cannot_connect": "Cannot connect to the 352 cloud",
       "unknown": "Unknown error, check the logs"
     },
     "abort": {
       "already_configured": "This account is already configured",
       "reauth_successful": "Re-authentication successful"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "hcho": {
+        "name": "Formaldehyde"
+      },
+      "tvoc": {
+        "name": "TVOC"
+      },
+      "currenttemperature": {
+        "name": "Temperature"
+      },
+      "relativehumidity": {
+        "name": "Humidity"
+      },
+      "airqualitygrade": {
+        "name": "Air quality grade"
+      },
+      "workmode": {
+        "name": "Operating mode"
+      },
+      "windvalue": {
+        "name": "Airflow"
+      },
+      "devicemode": {
+        "name": "Device mode"
+      },
+      "totalpurairv": {
+        "name": "Total purified air volume"
+      },
+      "totalruntime": {
+        "name": "Total runtime"
+      },
+      "sleepmodesetparam": {
+        "name": "Sleep mode setting"
+      },
+      "wifi_rssi": {
+        "name": "Wi-Fi signal"
+      },
+      "filterlifetimepercent_1": {
+        "name": "Filter 1 life remaining"
+      },
+      "filterlifetimepercent_2": {
+        "name": "Filter 2 life remaining"
+      },
+      "filterlifetimepercent_3": {
+        "name": "Filter 3 life remaining"
+      },
+      "filtersn_1": {
+        "name": "Filter 1 serial number"
+      },
+      "filtersn_2": {
+        "name": "Filter 2 serial number"
+      },
+      "filtersn_3": {
+        "name": "Filter 3 serial number"
+      },
+      "rawwatertds": {
+        "name": "Inlet TDS"
+      },
+      "finishedwatertds": {
+        "name": "Outlet TDS"
+      },
+      "rawwaterstatus": {
+        "name": "Inlet water quality grade"
+      },
+      "purewasteratio": {
+        "name": "Purified-to-wastewater ratio"
+      },
+      "hotpottemp": {
+        "name": "Hot water temperature"
+      },
+      "taptemperature": {
+        "name": "Outlet water temperature"
+      },
+      "tapfinishedwatertemp": {
+        "name": "Purified outlet water temperature"
+      },
+      "normaltemperature": {
+        "name": "Ambient water temperature"
+      },
+      "rawwatertemperature": {
+        "name": "Inlet water temperature"
+      },
+      "watertemperature": {
+        "name": "Water temperature"
+      },
+      "coolpottemperature": {
+        "name": "Cold water temperature"
+      },
+      "boilingtemperature": {
+        "name": "Boiling point"
+      },
+      "refluxntctemp": {
+        "name": "Recirculation temperature"
+      },
+      "disinfectionntctemp": {
+        "name": "Disinfection temperature"
+      },
+      "settemperature": {
+        "name": "Set temperature"
+      },
+      "totalwaterconsumption": {
+        "name": "Total purified water dispensed"
+      },
+      "totalpurewater": {
+        "name": "Total purified water produced"
+      },
+      "totalwastewater": {
+        "name": "Total wastewater"
+      },
+      "normothermiawater": {
+        "name": "Total ambient water"
+      },
+      "hydrothermalwater": {
+        "name": "Total hot water"
+      },
+      "surpluswater_1": {
+        "name": "Filter 1 remaining capacity"
+      },
+      "surpluswater_2": {
+        "name": "Filter 2 remaining capacity"
+      },
+      "currentpurewaterproduction": {
+        "name": "Current purified water production"
+      },
+      "onewater": {
+        "name": "Last dispense volume"
+      },
+      "onepurewater": {
+        "name": "Last purification volume"
+      },
+      "onewatertime": {
+        "name": "Last dispense duration"
+      },
+      "liquidlevelstatus": {
+        "name": "Tank level"
+      },
+      "workstate": {
+        "name": "Operating status"
+      },
+      "hotpotstate": {
+        "name": "Hot water tank status"
+      },
+      "heatingstatus": {
+        "name": "Heating status"
+      },
+      "totalwaterusageduration": {
+        "name": "Total water usage duration"
+      },
+      "deviceusedtime": {
+        "name": "Device usage duration"
+      },
+      "cycledisinfecttime": {
+        "name": "Disinfection cycles"
+      },
+      "errorcode": {
+        "name": "Fault code"
+      }
+    },
+    "switch": {
+      "uvledswitch": {
+        "name": "UV light"
+      },
+      "pciswitch": {
+        "name": "Ionizer"
+      },
+      "smartmodeswitch": {
+        "name": "Smart mode"
+      },
+      "childlockswitch": {
+        "name": "Child lock"
+      },
+      "voicesettings": {
+        "name": "Voice prompts"
+      },
+      "standbysensorswitch": {
+        "name": "Standby sensor"
+      },
+      "microwavesensor": {
+        "name": "Microwave sensor"
+      },
+      "sleepmode": {
+        "name": "Sleep mode"
+      },
+      "hotpotswitch": {
+        "name": "Hot water tank"
+      },
+      "coolpotswitch": {
+        "name": "Cold water tank"
+      },
+      "uvc": {
+        "name": "UV disinfection"
+      },
+      "directeffluentswitch": {
+        "name": "Direct discharge"
+      },
+      "holidaymode": {
+        "name": "Holiday mode"
+      }
+    },
+    "fan": {
+      "fan_speed": {
+        "name": "Fan speed"
+      }
+    },
+    "light": {
+      "display_light": {
+        "name": "Display light"
+      }
     }
   }
 }

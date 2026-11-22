@@ -11,14 +11,21 @@ from homeassistant.data_entry_flow import FlowResult
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 
-from .api import Ha352AuthError, Ha352Client, Ha352ConnectionError, Ha352Error
-from .const import CONF_ACCOUNT, CONF_PASSWORD, DEFAULT_NAME, DOMAIN
+from .api import (
+    Ha352AuthError,
+    Ha352Client,
+    Ha352CloudAuthError,
+    Ha352ConnectionError,
+    Ha352Error,
+)
+from .const import CONF_ACCOUNT, CONF_AREA, CONF_PASSWORD, DEFAULT_NAME, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
 STEP_USER_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_ACCOUNT): cv.string,
+        vol.Optional(CONF_AREA): cv.string,
         vol.Required(CONF_PASSWORD): cv.string,
     }
 )
@@ -26,13 +33,8 @@ STEP_USER_SCHEMA = vol.Schema(
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """真实登录 + 拉设备列表验证凭据（在线程池执行，网络调用是阻塞的）。"""
-    client = Ha352Client(data[CONF_ACCOUNT], data[CONF_PASSWORD])
-    try:
-        devices = await hass.async_add_executor_job(client.list_devices)
-    except Ha352AuthError as err:
-        raise Ha352AuthError(str(err)) from err
-    except Ha352ConnectionError as err:
-        raise Ha352ConnectionError(str(err)) from err
+    client = Ha352Client(data[CONF_ACCOUNT], data[CONF_PASSWORD], area=data.get(CONF_AREA, ""))
+    devices = await hass.async_add_executor_job(client.list_devices)
     return {"devices": len(devices), "account": data[CONF_ACCOUNT]}
 
 
@@ -46,8 +48,9 @@ class Ha352ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
-            except Ha352AuthError:
-                errors["base"] = "invalid_auth"
+            except Ha352AuthError as err:
+                _LOGGER.warning("352 authentication failed: %s", err)
+                errors["base"] = "cloud_auth" if isinstance(err, Ha352CloudAuthError) else "invalid_auth"
             except Ha352ConnectionError:
                 errors["base"] = "cannot_connect"
             except Ha352Error:
@@ -80,8 +83,9 @@ class Ha352ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data = {**self._reauth_entry.data, **user_input}
             try:
                 await validate_input(self.hass, data)
-            except Ha352AuthError:
-                errors["base"] = "invalid_auth"
+            except Ha352AuthError as err:
+                _LOGGER.warning("352 authentication failed: %s", err)
+                errors["base"] = "cloud_auth" if isinstance(err, Ha352CloudAuthError) else "invalid_auth"
             except Ha352ConnectionError:
                 errors["base"] = "cannot_connect"
             except Ha352Error:
@@ -92,6 +96,8 @@ class Ha352ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         schema = vol.Schema({
             vol.Required(CONF_ACCOUNT,
                          default=self._reauth_entry.data.get(CONF_ACCOUNT, "")): cv.string,
+            vol.Optional(CONF_AREA,
+                         default=self._reauth_entry.data.get(CONF_AREA, "")): cv.string,
             vol.Required(CONF_PASSWORD): cv.string,
         })
         return self.async_show_form(

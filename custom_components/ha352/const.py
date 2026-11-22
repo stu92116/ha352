@@ -7,6 +7,7 @@ MANUFACTURER = "352"
 DEFAULT_NAME = "352 Smart Home"
 
 CONF_ACCOUNT = "account"
+CONF_AREA = "area"
 CONF_PASSWORD = "password"
 
 UPDATE_INTERVAL_SECONDS = 60

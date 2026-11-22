@@ -34,9 +34,34 @@
 重启后：**设置 → 设备与服务 → 添加集成 → 搜索 "352"**，
 输入 352Life App 的登录手机号与密码即可。账号下所有设备自动出现。
 
+如果在 352Life 选择台湾（+886）登录，请在电话区号栏输入 `+886`，手机号栏填写和 App 相同的 `09XXXXXXXX`。其他账号可按 App 填写区号，原来能登录的配置可将区号留空。
+
 - 设备每 **60 秒** 云端轮询一次（352 云不支持本地/局域网控制）
 - 登录令牌自动续期（iotToken 20h 内自动重建会话），无需干预
 - 密码变更后集成会提示重新认证
+
+## 淨水器儀表板卡片
+
+`lovelace/ha352-purifier-card.js` 提供兩種版面，`classic` 為淺色總覽，`atelier` 為深色版並顯示 24 小時與 7 天的 TDS 趨勢。
+
+1. 把 JS 檔案放在 HA 設定目錄的 `www/ha352-purifier-card.js`。
+2. 在「設定 → 儀表板 → 資源」將 `/local/ha352-purifier-card.js` 加為「JavaScript 模組」。
+3. 在儀表板新增手動卡片，並填入實際的實體 ID。
+
+```yaml
+type: custom:ha352-purifier-card
+style: atelier
+title: 廚房淨水
+model: 352 A418H
+entities:
+  inlet: sensor.kitchen_purifier_inlet_tds
+  outlet: sensor.kitchen_purifier_outlet_tds
+  filter_1: sensor.kitchen_purifier_filter_1
+  filter_2: sensor.kitchen_purifier_filter_2
+  temperature: sensor.kitchen_purifier_water_temperature
+```
+
+`inlet` 和 `outlet` 為必填。暮光版可用 `photo: /local/kitchen.jpg` 加入自己的照片。點選一項讀值會開啟 HA 的實體詳情。
 
 ## 仪表盘卡片示例
 
